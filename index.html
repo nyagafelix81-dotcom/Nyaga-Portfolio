@@ -4,67 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
-    <link rel="stylesheet" href="styles.css">  <!-- This links to CSS we'll add later -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Welcome to My Portfolio</h1>
+        <div class="header-content">
+            <h1>Welcome to My Portfolio</h1>
+            <button id="theme-toggle" aria-label="Toggle dark/light mode">
+                🌙 Dark Mode
+            </button>
+        </div>
         <nav>
-            <button id="theme-toggle" aria-label="Toggle dark mode">
-    🌙 Dark Mode
-</button>
             <ul>
                 <li><a href="#about">About Me</a></li>
+                <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-<section id="about">
-    <h2>About Me</h2>
-    <div class="about-container">
-        <img 
-            src="WhatsApp Image 2026-03-04 at 11.10.14.jpeg" 
-            alt="Photo of Nyaga Felix Fundi" 
-            class="profile-photo">
-        <div class="about-text">
-            <p>Hi, I'm <strong>Nyaga Felix Fundi</strong> from Thika!</p>
-            <p>I'm learning web development and excited to build cool stuff. Passionate about turning ideas into clean, functional websites.</p>
-            <p>Currently exploring HTML, CSS, JavaScript — and always up for learning new tech!</p>
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about-container">
+            <img
+                src="WhatsApp Image 2026-03-04 at 11.10.14.jpeg"
+                alt="Photo of Nyaga Felix Fundi"
+                class="profile-photo">
+            <div class="about-text">
+                <p>Hi, I'm <strong>Nyaga Felix Fundi</strong> from Thika</p>
+                <p>I'm learning web development and excited to build cool stuff. Passionate about turning ideas into clean, functional websites.</p>
+                <p>Currently exploring HTML, CSS, JavaScript and always up for learning new tech</p>
+            </div>
         </div>
-    </div>
-</section>
-<section id="projects">
-    <h2>Projects</h2>
-    <div class="project">
-        <h3>My First Website</h3>
-        <p>This portfolio site! Built with HTML, CSS & a little JavaScript.</p>
-    </div>
-    <!-- Add more <div class="project"> blocks later -->
-</section>
+    </section>
+
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="project">
+            <h3>My First Website</h3>
+            <p>This portfolio site is Built with HTML, CSS & a little JavaScript.</p>
+        </div>
+        <!-- Add more projects later -->
+    </section>
 
     <section id="contact">
         <h2>Contact Me</h2>
         <form id="contact-form">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
-            
+
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
-            
+
             <label for="message">Message:</label>
             <textarea id="message" name="message" required></textarea>
-            
+
             <button type="submit">Send</button>
         </form>
-        <p id="form-response"></p>  <!-- This will show a message after submit -->
+        <p id="form-response"></p>
     </section>
 
     <footer>
-        <p>&copy; 2026 My Portfolio</p>
+        <p>© 2026 My Portfolio</p>
     </footer>
 
-    <script src="script.js"></script>  <!-- This links to JS we'll add later -->
+    <script src="script.js"></script>
 </body>
 </html>
-
