@@ -8,13 +8,20 @@
 }
 
 .profile-photo {
-    width: 160px;                 /* Slightly bigger for impact */
+    width: 160px;
     height: 160px;
     border-radius: 50%;
-    object-fit: cover;            /* Prevents stretching if proportions differ */
-    border: 4px solid #4CAF50;    /* Techy green border */
-    box-shadow: 0 6px 15px rgba(76, 175, 80, 0.3); /* Glow/shadow for liveliness */
-    flex-shrink: 0;               /* Photo won't shrink too much */
+    object-fit: cover;
+    border: 4px solid var(--accent);
+    box-shadow: 0 6px 15px rgba(0, 191, 255, 0.2);
+    transition: all 0.3s ease;  /* Smooth zoom & lift */
+    cursor: pointer;
+}
+
+.profile-photo:hover {
+    transform: scale(1.15) translateY(-8px);  /* Zoom + slight lift */
+    box-shadow: 0 12px 30px rgba(0, 191, 255, 0.5);  /* Bigger glow */
+    border-color: var(--accent);
 }
 
 .about-text {
@@ -161,4 +168,5 @@ footer {
 }html {
     scroll-behavior: smooth;
 }
+
 
