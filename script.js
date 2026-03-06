@@ -3,19 +3,18 @@ const toggle = document.getElementById('theme-toggle');
 const html = document.documentElement;
 let theme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
 html.setAttribute('data-theme', theme);
-toggle.textContent = theme === 'dark' ? '☀️ Light' : '🌙 Dark';
+toggle.textContent = theme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode';
 
 toggle.addEventListener('click', () => {
     theme = theme === 'dark' ? 'light' : 'dark';
     html.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
-    toggle.textContent = theme === 'dark' ? '☀️ Light' : '🌙 Dark';
+    toggle.textContent = theme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode';
 });
 
-// Real Form Submission + Feedback
+// Real Form Submission
 document.getElementById('contact-form')?.addEventListener('submit', async function(e) {
     e.preventDefault();
-    
     const form = e.target;
     const res = document.getElementById('form-response');
     res.textContent = 'Sending...';
@@ -34,18 +33,25 @@ document.getElementById('contact-form')?.addEventListener('submit', async functi
             form.reset();
             setTimeout(() => res.textContent = '', 5000);
         } else {
-            throw new Error('Failed to send');
+            throw new Error('Failed');
         }
     } catch (err) {
         res.textContent = 'Oops, something went wrong. Try again?';
         res.style.color = '#ff6b6b';
     }
 });
-// Optional: Trigger typing after page load delay
+
+// Typing fallback & page entry animation
 window.addEventListener('load', () => {
+    // Force name visible quickly
     document.getElementById('typing-name').style.opacity = '1';
+    
+    // Tagline starts after name
     setTimeout(() => {
         document.getElementById('typing-tag').style.opacity = '1';
-    }, 3800); // delay for second line
-});
+    }, 2400);
 
+    // Page entry animation (fade + slide up)
+    document.body.style.opacity = '1';
+    document.body.style.transform = 'translateY(0)';
+});
