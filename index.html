@@ -10,13 +10,18 @@
 <body>
     <header class="hero">
         <div class="container">
-            <h1>Nyaga Felix Fundi</h1>
-            <p class="tagline">Web Developer from Thika • Building clean & functional websites</p>
+            <h1 class="typing-container">
+                <span id="typing-name">Nyaga Felix Fundi</span>
+            </h1>
+            <p class="tagline typing-container">
+                <span id="typing-tag">Web Developer from Thika • Building clean & functional websites</span>
+            </p>
             <button id="theme-toggle">🌙 Dark Mode</button>
         </div>
         <nav>
             <ul>
                 <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -36,19 +41,49 @@
             </div>
         </section>
 
+        <section id="skills">
+            <h2>Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <span class="skill-name">HTML</span>
+                    <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">CSS</span>
+                    <div class="progress-bar"><div class="progress" style="width: 85%;"></div></div>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">JavaScript</span>
+                    <div class="progress-bar"><div class="progress" style="width: 70%;"></div></div>
+                </div>
+                <!-- Add more skills later -->
+            </div>
+        </section>
+
         <section id="projects">
             <h2>Projects</h2>
             <div class="project">
                 <h3>My First Website</h3>
-                <p>This portfolio site! Built with HTML, CSS & a little JavaScript.</p>
+                <p>This portfolio site! Built with HTML, CSS & a little JavaScript. Features dark mode, form submission, and responsive design.</p>
             </div>
-            <!-- Add more projects later -->
+            <div class="project">
+                <h3>Task Tracker App (In Progress)</h3>
+                <p>A simple to-do list app with local storage, add/delete tasks, and dark mode toggle. Learning JS DOM manipulation.</p>
+            </div>
+            <div class="project">
+                <h3>Weather Dashboard (Coming Soon)</h3>
+                <p>Plan to build a weather app using a free API. Will show current weather, forecast, and location-based data.</p>
+            </div>
         </section>
 
         <section id="contact">
             <h2>Contact Me</h2>
-            <!-- === IMPORTANT: Replace YOUR-FORM-ID-HERE with your real Formspree endpoint === -->
-            <form id="contact-form" action="https://formspree.io/f/mkoqnnwr" method="POST">
+            <p>Reach out via email or phone:</p>
+            <p class="contact-info">
+                Phone: <a href="tel:+254115481116">+254 115 481 116</a> or <a href="tel:+254111361870">+254 111 361 870</a>
+            </p>
+            <!-- Replace YOUR-FORM-ID-HERE with your real Formspree endpoint -->
+            <form id="contact-form" action="https://formspree.io/f/YOUR-FORM-ID-HERE" method="POST">
                 <input type="text" id="name" name="name" placeholder="Your Name" required>
                 <input type="email" id="email" name="email" placeholder="Your Email" required>
                 <textarea id="message" name="message" placeholder="Your Message" required rows="5"></textarea>
@@ -77,4 +112,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
