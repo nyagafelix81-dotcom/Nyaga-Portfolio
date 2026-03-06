@@ -41,3 +41,11 @@ document.getElementById('contact-form')?.addEventListener('submit', async functi
         res.style.color = '#ff6b6b';
     }
 });
+// Optional: Trigger typing after page load delay
+window.addEventListener('load', () => {
+    document.getElementById('typing-name').style.opacity = '1';
+    setTimeout(() => {
+        document.getElementById('typing-tag').style.opacity = '1';
+    }, 3800); // delay for second line
+});
+
