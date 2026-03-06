@@ -4,16 +4,16 @@ html { scroll-behavior: smooth; }
 :root {
     --bg: #0b0e17;
     --text: #d4d4ff;
-    --accent: #5e60ce;          /* deeper indigo */
+    --accent: #5e60ce;
     --accent-dark: #4d4fc2;
-    --secondary: #48cae4;       /* muted cyan/teal */
+    --secondary: #48cae4;
     --card: #121826;
     --glow: rgba(94, 96, 206, 0.35);
 }
 
 [data-theme="light"] {
     --bg: #f8f9fa;
-    --text: #212529;
+    --text: #1a1a2e;
     --accent: #5e60ce;
     --secondary: #48cae4;
     --card: #ffffff;
@@ -25,18 +25,22 @@ body {
     color: var(--text);
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1.2s ease, transform 1.2s ease;
 }
 
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
+body.page-entry {
+    opacity: 1;
+    transform: translateY(0);
 }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
 
 .hero {
     background: linear-gradient(135deg, #0f1325, #1a1f3d);
-    min-height: 70vh;           /* shorter now */
-    padding: 5rem 0 3rem;
+    min-height: 65vh;
+    padding: 4rem 0 2.5rem;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -46,17 +50,36 @@ body {
 h1 {
     font-size: clamp(2.5rem, 7vw, 4.2rem);
     margin-bottom: 0.8rem;
-    background: linear-gradient(90deg, var(--accent), var(--secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
 }
 
-.tagline {
-    font-size: 1.15rem;
-    opacity: 0.85;
-    max-width: 600px;
-    margin: 0 auto 1.5rem;
+.typing-container {
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: max-content;
+    margin: 0 auto;
 }
+
+.typing-text {
+    opacity: 0;
+    border-right: 0.15em solid var(--secondary);
+}
+
+[data-theme="light"] .typing-text {
+    color: var(--text);
+    background: none;
+    -webkit-background-clip: initial;
+    background-clip: initial;
+    -webkit-text-fill-color: initial;
+}
+
+#typing-name { animation: typing-name 2s steps(18) forwards 0.4s, blink 0.8s step-end infinite 0.4s; }
+#typing-tag  { animation: typing-tag 2.5s steps(50) forwards 2.6s, blink 0.8s step-end infinite 2.6s; }
+
+@keyframes typing-name { from { width: 0; opacity: 1; } to { width: 100%; opacity: 1; } }
+@keyframes typing-tag  { from { width: 0; opacity: 1; } to { width: 100%; opacity: 1; } }
+@keyframes blink       { 50% { border-color: transparent; } }
+
+.tagline { font-size: 1.15rem; opacity: 0.9; max-width: 600px; margin: 0 auto 1.5rem; }
 
 #theme-toggle {
     background: var(--accent);
@@ -65,37 +88,23 @@ h1 {
     padding: 0.6rem 1.2rem;
     border-radius: 50px;
     cursor: pointer;
-    font-weight: 500;
-    transition: 0.3s;
-    margin-top: 1rem;
+    margin-top: 1.2rem;
 }
 
-#theme-toggle:hover {
-    transform: scale(1.05);
-    background: var(--accent-dark);
-}
+#theme-toggle:hover { background: var(--accent-dark); transform: scale(1.05); }
 
 nav ul {
     display: flex;
     justify-content: center;
     gap: 2rem;
     list-style: none;
-    margin-top: 1.5rem;
+    margin-top: 1.8rem;
 }
 
-nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-}
+nav a { color: white; text-decoration: none; font-weight: 500; }
+nav a:hover { color: var(--secondary); }
 
-nav a:hover {
-    color: var(--secondary);
-}
-
-section {
-    padding: 4rem 0;
-}
+section { padding: 4rem 0; }
 
 .about-flex {
     display: flex;
@@ -119,11 +128,39 @@ section {
     box-shadow: 0 0 35px var(--glow);
 }
 
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+}
+
+.skill-item {
+    background: var(--card);
+    padding: 1.2rem;
+    border-radius: 10px;
+    border-left: 4px solid var(--accent);
+}
+
+.skill-name { font-weight: 600; margin-bottom: 0.5rem; display: block; }
+
+.progress-bar {
+    background: #2a2a3f;
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--secondary));
+    transition: width 1.8s ease-in-out;
+}
+
 .project {
     background: var(--card);
     padding: 1.8rem;
     border-radius: 12px;
-    margin: 1.5rem 0;
+    margin: 2rem 0;
     border-left: 5px solid var(--accent);
     transition: 0.3s;
 }
@@ -157,130 +194,53 @@ button {
     border-radius: 8px;
     cursor: pointer;
     font-weight: 600;
-    transition: 0.3s;
 }
 
-button:hover {
-    background: var(--accent-dark);
-}
+button:hover { background: var(--accent-dark); }
 
 footer {
     text-align: center;
-    padding: 2rem;
-    background: #0a0a1a;
-    margin-top: 3rem;
+    padding: 2.5rem 1rem;
+    background: var(--card);
+    border-top: 1px solid var(--accent);
+    margin-top: 4rem;
 }
 
 .social-icons {
     display: flex;
     justify-content: center;
     gap: 1.8rem;
-    margin-top: 1rem;
+    margin-top: 1.2rem;
 }
 
 .social-icons a {
     color: var(--text);
     opacity: 0.7;
-    transition: all 0.3s;
+    transition: 0.3s;
 }
 
 .social-icons a:hover {
     color: var(--secondary);
     opacity: 1;
-    transform: translateY(-3px);
+    transform: translateY(-4px);
 }
 
-.social-icons svg {
-    transition: all 0.3s;
-}
+.social-icons svg { transition: filter 0.3s; }
 
 .social-icons a:hover svg {
-    filter: drop-shadow(0 0 8px var(--secondary));
+    filter: drop-shadow(0 0 10px var(--secondary));
 }
 
-/* Mobile fixes */
+.contact-info a {
+    color: var(--secondary);
+    text-decoration: none;
+}
+
+.contact-info a:hover { text-decoration: underline; }
+
+/* Mobile */
 @media (max-width: 768px) {
     h1 { font-size: 2.8rem; }
     .about-flex { flex-direction: column; text-align: center; }
     nav ul { flex-direction: column; gap: 1rem; }
-}
-/* Typing Animation */
-.typing-container {
-    overflow: hidden;
-    white-space: nowrap;
-}
-
-#typing-name, #typing-tag {
-    display: inline-block;
-    opacity: 0;
-    animation: fadeIn 0.5s forwards;
-}
-
-#typing-name {
-    animation: typing-name 3.5s steps(20) forwards, blink-caret 0.75s step-end infinite;
-}
-
-#typing-tag {
-    animation: typing-tag 4s steps(50) 3.8s forwards, blink-caret 0.75s step-end infinite 3.8s;
-}
-
-@keyframes typing-name {
-    from { width: 0; opacity: 1; }
-    to { width: 100%; opacity: 1; }
-}
-
-@keyframes typing-tag {
-    from { width: 0; opacity: 1; }
-    to { width: 100%; opacity: 1; }
-}
-
-@keyframes blink-caret {
-    from, to { border-color: transparent; }
-    50% { border-color: var(--secondary); }
-}
-
-@keyframes fadeIn {
-    to { opacity: 1; }
-}
-
-/* Skills Section */
-#skills {
-    padding: 3rem 0;
-}
-
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.5rem;
-}
-
-.skill-item {
-    background: var(--card);
-    padding: 1.2rem;
-    border-radius: 10px;
-    border-left: 4px solid var(--accent);
-}
-
-.skill-name {
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    display: block;
-}
-
-.progress-bar {
-    background: #2a2a3f;
-    height: 8px;
-    border-radius: 4px;
-    overflow: hidden;
-}
-
-.progress {
-    height: 100%;
-    background: linear-gradient(90deg, var(--accent), var(--secondary));
-    transition: width 1.5s ease-in-out;
-}
-
-/* Project enhancements (slight spacing) */
-.project {
-    margin: 2rem 0;
 }
