@@ -12,7 +12,7 @@ toggle.addEventListener('click', () => {
     toggle.textContent = theme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode';
 });
 
-// Real Form Submission
+// Form Submission (more robust + debug-friendly)
 document.getElementById('contact-form')?.addEventListener('submit', async function(e) {
     e.preventDefault();
     const form = e.target;
@@ -25,33 +25,28 @@ document.getElementById('contact-form')?.addEventListener('submit', async functi
         const response = await fetch(form.action, {
             method: 'POST',
             body: data,
-            headers: { 'Accept': 'application/json' }
+            headers: {
+                'Accept': 'application/json'
+            }
         });
 
         if (response.ok) {
-            res.textContent = 'Message sent successfully! 🚀';
+            res.textContent = 'Message sent! 🚀 (Check your inbox)';
             form.reset();
-            setTimeout(() => res.textContent = '', 5000);
+            setTimeout(() => res.textContent = '', 6000);
         } else {
-            throw new Error('Failed');
+            const errorText = await response.text();
+            console.log('Formspree error:', errorText);
+            throw new Error('Server responded with error');
         }
     } catch (err) {
-        res.textContent = 'Oops, something went wrong. Try again?';
+        console.error('Submission error:', err);
+        res.textContent = 'Oops — failed to send. Check connection or try again?';
         res.style.color = '#ff6b6b';
     }
 });
 
-// Typing fallback & page entry animation
+// Page entry animation (fade + slide up)
 window.addEventListener('load', () => {
-    // Force name visible quickly
-    document.getElementById('typing-name').style.opacity = '1';
-    
-    // Tagline starts after name
-    setTimeout(() => {
-        document.getElementById('typing-tag').style.opacity = '1';
-    }, 2400);
-
-    // Page entry animation (fade + slide up)
-    document.body.style.opacity = '1';
-    document.body.style.transform = 'translateY(0)';
+    document.body.classList.add('loaded');
 });
